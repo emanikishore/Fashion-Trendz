@@ -136,6 +136,7 @@ class ProductItemDetails extends Component {
               <img src={imageUrl} alt="product" className="product-image" />
               <div className="product">
                 <h1 className="product-name">{title}</h1>
+                <p className="product-description">{description}</p>
                 <p className="price-details">Rs {price}/-</p>
                 <div className="rating-and-reviews-count">
                   <div className="rating-container">
@@ -148,7 +149,6 @@ class ProductItemDetails extends Component {
                   </div>
                   <p className="reviews-count">{totalReviews} Reviews</p>
                 </div>
-                <p className="product-description">{description}</p>
                 <div className="label-value-container">
                   <p className="label">Available:</p>
                   <p className="value">{availability}</p>
@@ -184,6 +184,11 @@ class ProductItemDetails extends Component {
                 >
                   ADD TO CART
                 </button>
+                <Link to="/cart">
+                  <button type="button" className="button add-to-cart-btn">
+                    BUY NOW
+                  </button>
+                </Link>
               </div>
             </div>
             <h1 className="similar-products-heading">Similar Products</h1>

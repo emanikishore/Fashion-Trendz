@@ -1,23 +1,25 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 
 import './index.css'
 
 class LoginForm extends Component {
   state = {
-    username: '',
-    password: '',
+    username: 'rahul',
+    password: 'rahul@2021',
+    us: '',
+    pd: '',
     showSubmitError: false,
     errorMsg: '',
   }
 
   onChangeUsername = event => {
-    this.setState({username: event.target.value})
+    this.setState({us: event.target.value})
   }
 
   onChangePassword = event => {
-    this.setState({password: event.target.value})
+    this.setState({pd: event.target.value})
   }
 
   onSubmitSuccess = jwtToken => {
@@ -25,6 +27,7 @@ class LoginForm extends Component {
 
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
+      path: '/',
     })
     history.replace('/')
   }
@@ -35,24 +38,43 @@ class LoginForm extends Component {
 
   submitForm = async event => {
     event.preventDefault()
-    const {username, password} = this.state
-    const userDetails = {username, password}
-    const url = 'https://apis.ccbp.in/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
-    const response = await fetch(url, options)
-    const data = await response.json()
-    if (response.ok === true) {
-      this.onSubmitSuccess(data.jwt_token)
+
+    const {us, pd} = this.state
+
+    const localStorageData = await localStorage.getItem('loginuser')
+    const parsedData = await JSON.parse(localStorageData)
+    const userChecking = parsedData.find(item => item.name === us)
+    if (userChecking) {
+      const passwordChecking = parsedData.find(
+        item => item.name === us && item.password === pd,
+      )
+      if (passwordChecking) {
+        const {username, password} = this.state
+        const userDetails = {username, password}
+        const url = 'https://apis.ccbp.in/login'
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(userDetails),
+        }
+        const response = await fetch(url, options)
+        const data = await response.json()
+        if (response.ok === true) {
+          this.onSubmitSuccess(data.jwt_token)
+        } else {
+          this.onSubmitFailure(data.error_msg)
+        }
+      } else {
+        console.log('password wrong')
+        this.setState({errorMsg: '*Invalid Password'})
+      }
     } else {
-      this.onSubmitFailure(data.error_msg)
+      console.log('username wrong')
+      this.setState({errorMsg: '*Invalid Username'})
     }
   }
 
   renderPasswordField = () => {
-    const {password} = this.state
+    const {pd} = this.state
 
     return (
       <>
@@ -63,7 +85,7 @@ class LoginForm extends Component {
           type="password"
           id="password"
           className="password-input-field"
-          value={password}
+          value={pd}
           onChange={this.onChangePassword}
           placeholder="Password"
         />
@@ -72,7 +94,7 @@ class LoginForm extends Component {
   }
 
   renderUsernameField = () => {
-    const {username} = this.state
+    const {us} = this.state
 
     return (
       <>
@@ -83,7 +105,7 @@ class LoginForm extends Component {
           type="text"
           id="username"
           className="username-input-field"
-          value={username}
+          value={us}
           onChange={this.onChangeUsername}
           placeholder="Username"
         />
@@ -113,7 +135,7 @@ class LoginForm extends Component {
         />
         <form className="form-container" onSubmit={this.submitForm}>
           <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+            src="https://i.ibb.co/fpHjzb3/157791144-padded-logo-removebg.png"
             className="login-website-logo-desktop-img"
             alt="website logo"
           />
@@ -122,6 +144,9 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
+          <Link to="/signup">
+            <p className="sign-up-para">Signup</p>
+          </Link>
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>

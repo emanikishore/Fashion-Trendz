@@ -1,3 +1,4 @@
+/*
 import {Redirect, Route} from 'react-router-dom'
 import Cookie from 'js-cookie'
 
@@ -10,3 +11,4 @@ const ProtectedRoute = props => {
 }
 
 export default ProtectedRoute
+ */

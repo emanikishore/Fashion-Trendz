@@ -8,18 +8,21 @@ const Home = () => (
     <Header />
     <div className="home-container">
       <div className="home-content">
-        <h1 className="home-heading">Clothes That Get YOU Noticed</h1>
+        <h1 className="home-heading">
+          Don't be afraid to experiment with color and pattern
+        </h1>
         <img
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png"
           alt="clothes that get you noticed"
           className="home-mobile-img"
         />
         <p className="home-description">
-          Fashion is part of the daily air and it does not quite help that it
-          changes all the time. Clothes have always been a marker of the era and
-          we are in a revolution. Your fashion makes you been seen and heard
-          that way you are. So, celebrate the seasons new and exciting fashion
-          in your own way.
+          Fashion is a dynamic and ever-changing aspect of life. It is a
+          reflection of the times, and our current era is one of revolution and
+          transformation. Our fashion choices can be a powerful tool for
+          self-expression and identity formation. So, embrace the new and
+          exciting trends of the season and use them to showcase your unique
+          style.
         </p>
         <Link to="/products">
           <button type="button" className="shop-now-button">

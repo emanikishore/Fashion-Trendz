@@ -7,21 +7,16 @@ import Products from './components/Products'
 import ProductItemDetails from './components/ProductItemDetails'
 import Cart from './components/Cart'
 import NotFound from './components/NotFound'
-import ProtectedRoute from './components/ProtectedRoute'
+import Success from './components/Success'
 import CartContext from './context/CartContext'
 
 import './App.css'
+import PlaceOrder from './components/PlaceOrder'
+import SignUp from './components/SignUp'
 
 class App extends Component {
   state = {
     cartList: [],
-  }
-
-  //   TODO: Add your code for remove all cart items, increment cart item quantity, decrement cart item quantity, remove cart item
-
-  addCartItem = product => {
-    this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
-    //   TODO: Update the code here to implement addCartItem
   }
 
   removeAllCartItems = () => {
@@ -108,14 +103,13 @@ class App extends Component {
       >
         <Switch>
           <Route exact path="/login" component={LoginForm} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/products" component={Products} />
-          <ProtectedRoute
-            exact
-            path="/products/:id"
-            component={ProductItemDetails}
-          />
-          <ProtectedRoute exact path="/cart" component={Cart} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/products" component={Products} />
+          <Route exact path="/products/:id" component={ProductItemDetails} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/success" component={Success} />
+          <Route exact path="/place" component={PlaceOrder} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>

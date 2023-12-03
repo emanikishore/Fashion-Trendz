@@ -36,7 +36,7 @@ const Header = props => {
           <Link to="/">
             <img
               className="website-logo"
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+              src="https://i.ibb.co/fpHjzb3/157791144-padded-logo-removebg.png"
               alt="website logo"
             />
           </Link>
@@ -47,7 +47,7 @@ const Header = props => {
             onClick={onClickLogout}
           >
             <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
+              src="https://i.ibb.co/fpHjzb3/157791144-padded-logo-removebg.png"
               alt="nav logout"
               className="nav-bar-img"
             />
@@ -58,7 +58,7 @@ const Header = props => {
           <Link to="/">
             <img
               className="website-logo"
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
+              src="https://i.ibb.co/fpHjzb3/157791144-padded-logo-removebg.png"
               alt="website logo"
             />
           </Link>

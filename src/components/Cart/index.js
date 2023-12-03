@@ -12,7 +12,6 @@ const Cart = () => (
     {value => {
       const {cartList, removeAllCartItems} = value
       const showEmptyView = cartList.length === 0
-      // TODO: Update the functionality to remove all the items in the cart
       const removeAllBtn = () => {
         removeAllCartItems()
       }
@@ -35,7 +34,6 @@ const Cart = () => (
                 </button>
                 <CartListView />
                 <CartSummary />
-                {/* TODO: Add your code for Cart Summary here */}
               </div>
             )}
           </div>
